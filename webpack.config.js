@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { HotModuleReplacementPlugin } = require('webpack');
+const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -49,6 +49,9 @@ module.exports = (_, { mode }) => {
     },
 
     plugins: [
+      new DefinePlugin({
+        NODE_ENV: isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+      }),
       new HtmlWebpackPlugin({
         template: './index.html',
         hash: true,
