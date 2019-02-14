@@ -12,7 +12,9 @@ module.exports = (_, { mode }) => {
     entry: './src/js/index.jsx',
 
     optimization: {
-      minimizer: [new OptimizeCSSAssetsPlugin()],
+      minimizer: [
+        new OptimizeCSSAssetsPlugin(),
+      ],
     },
 
     output: {
@@ -66,5 +68,7 @@ module.exports = (_, { mode }) => {
       hot: true,
       open: true,
     },
+
+    devtool: isDevelopment ? 'inline-cheap-module-source-map' : false,
   };
 };
