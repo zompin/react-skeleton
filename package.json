@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "start": "npx webpack-dev-server --mode development",
+    "build": "npx webpack --mode production"
   },
   "dependencies": {
     "autoprefixer": "^9.1.3",
