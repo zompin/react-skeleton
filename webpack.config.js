@@ -4,6 +4,7 @@ const { HotModuleReplacementPlugin, DefinePlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = (_, { mode }) => {
   const isDevelopment = mode === 'development';
@@ -14,6 +15,7 @@ module.exports = (_, { mode }) => {
     optimization: {
       minimizer: [
         new OptimizeCSSAssetsPlugin(),
+        new TerserWebpackPlugin(),
       ],
     },
 
@@ -31,7 +33,8 @@ module.exports = (_, { mode }) => {
       rules: [
         {
           test: /\.jsx$/,
-          loader: 'babel-loader',
+          loader: ['babel-loader', 'eslint-loader'],
+          exclude: '/node_modules/',
         },
         {
           test: /\.less$/,
