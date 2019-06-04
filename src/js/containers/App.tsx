@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
 import { Switch, Route, withRouter } from 'react-router';
+import Foo from '../components/Foo'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div>
         <Switch>
-          <Route component={() => (<div>App</div>)} path="/" />
+          <Route>
+            <Foo />
+          </Route>
         </Switch>
       </div>
     );

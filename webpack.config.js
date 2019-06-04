@@ -10,7 +10,7 @@ module.exports = (_, { mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    entry: './src/js/index.jsx',
+    entry: './src/js/index.tsx',
 
     optimization: {
       minimizer: [
@@ -26,15 +26,23 @@ module.exports = (_, { mode }) => {
     },
 
     resolve: {
-      extensions: ['.jsx', '.js', 'less'],
+      extensions: ['.tsx', '.jsx', '.ts', '.js', '.less'],
+      alias: {
+        'react-dom': '@hot-loader/react-dom',
+      },
     },
 
     module: {
       rules: [
         {
-          test: /\.jsx$/,
+          test: /\.jsx?$/,
           loader: ['babel-loader', 'eslint-loader'],
           exclude: '/node_modules/',
+        },
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          exclude: path.resolve(__dirname, 'node_modules'),
         },
         {
           test: /\.less$/,
